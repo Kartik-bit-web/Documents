@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calendar:-</h1>
+    
+    <button id="prev" onclick="prev()">Prev</button>
+    <span id="month"></span>
+    <span id="year"></span>
+    <button id="next" onclick="next()">Next</button>
+    <br>
+    <table id="tbl">
+    </table>
+
+    {% block content %}
+
+    {% endblock %}
+    
+
+<script src="../static/practice.js"></script>
+
+</body>
+</html>
