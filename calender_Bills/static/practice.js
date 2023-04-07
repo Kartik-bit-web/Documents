@@ -52,6 +52,9 @@ function showCalendar(month, year){
                 td.style.cursor = 'pointer';
 
                 alink = document.createElement('a')
+                att2 = document.createAttribute('id')
+                att2.value =`${date}${month}${year}`
+                alink.setAttributeNode(att2)
 
                 att = document.createAttribute('href')
                 att.value = " /event"
@@ -62,7 +65,6 @@ function showCalendar(month, year){
                     alink.appendChild(tdText)
                     td.appendChild(alink)
                     tr.appendChild(td)
-                    console.log(td)
                     date++
                 }
                 
@@ -70,15 +72,15 @@ function showCalendar(month, year){
                     alink.appendChild(tdText)
                     td.appendChild(alink)
                     tr.appendChild(td)
-                    console.log()
                     date++
 
                 }
+                
                  
             }
         }
         tbl.appendChild(tr)
-        console.log(tr)
+       
     }
 }
 
