@@ -1,0 +1,20 @@
+{% extends "myindex.html"%}
+{% block booking %}
+<h2>Booking Info Here </h2>
+
+
+{% for book in books%}
+
+    <h3>{{ book.dated }}</h3>
+
+    <label for="name">Name:</label>
+    <p>{{book.nm}}</p>
+
+    <label for="opts">options:</label>
+    <p>{{book.opts}}</p>
+
+    <label for="Number">Number:</label>
+    <p>{{book.num}}</p>
+{% endfor %}
+
+{% endblock%}

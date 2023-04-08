@@ -1,8 +1,8 @@
 import requests
 
 # The link should be of the file directly
-url = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-file_extension = '.jpg'   # Example .wav
+url = 'https://youtube.com/clip/UgkxPFMxp4bRPA7pgO2nS7GQ8UtiYR_loQqE'
+file_extension = '.wav'   # Example .wav
 r = requests.get(url)
 
 # If extension does not exist in end of url, append it
