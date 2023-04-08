@@ -7,14 +7,16 @@
 
     <h3>{{ book.dated }}</h3>
 
-    <label for="name">Name:</label>
-    <p>{{book.nm}}</p>
+    <label for="name">Name: {{book.name}}</label> <a href="{{ url_for('editBooking')}}">edit</a><br>
 
-    <label for="opts">options:</label>
-    <p>{{book.opts}}</p>
+    <label for="opts">options: {{book.Option}}</label> <a href="{{url_for('editBooking')}}">edit</a><br>
 
-    <label for="Number">Number:</label>
-    <p>{{book.num}}</p>
+    <label for="Number">Number: {{book.number}}</label> <a href="{{url_for('editBooking')}}">edit</a>
+    
 {% endfor %}
+{% block edit %}
+
+{% endblock %}
+
 
 {% endblock%}
