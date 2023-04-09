@@ -2,8 +2,33 @@
 {% block edit %}
 <h3>edit:- </h3>
 <form action="" method="post">
-    <input type="text" name="edit">
-    <input type="submit" value="edit">
+    <input type="date" name="date" id="">
+        <select name="opt" id="">
+            <option value="select_Type">Select Type</option>
+            <option value="Marriage">Marriage</option>
+            <option value="Function">Function</option>
+            <option value="Birthday Party">Birthday Party</option>
+            <option value="Ring_Ceromony">Ring Ceromony</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="name">Name: </label>
+        <input type="text" name="on" id="">
+        <br>
+        <br>
+
+        <label for="Number">Number: </label>
+        <input type="text" name="num" id="">
+        <br>
+        <br>
+
+        <label for="amount">Total-Amount: </label>
+        <input type="text" name="amount" id="">
+        <br>
+        <br>
+        <input type="submit" value="edit">
 </form>
 
 {% endblock%}

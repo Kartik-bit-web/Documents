@@ -1,7 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
 import sqlalchemy as db
-from sqlalchemy import update
-
 
 app = Flask(__name__)
 engin  = db.create_engine('sqlite:///my.db')
@@ -20,29 +18,10 @@ data = db.Table('info', metadata,
 def hel():
     return render_template('myindex.html')
 
-
-
-
-@app.route('/try/<yo>')
-def tryi(yo):
-    return f'Hii {yo}'
-
-
-
-
-
-
 @app.route('/event')
 def event():
     error = 'Fill the form'
     return render_template('createEvent.html', error = error)
-
-
-
-
-
-
-
 
 @app.route('/showBooking')
 def booking():
@@ -50,21 +29,22 @@ def booking():
     show = result.fetchall()
     return render_template('showBooking.html', books=show)
 
-
-
-
-
-
-
 @app.route('/editBooking/<Id>', methods=['POST', 'GET'])
 def editHere(Id):
     print(Id)
     if request.method=='POST':
-        edit = request.form['edit']
-        updateQuery = "UPDATE info SET name = ? where id=?"
-        engin.execute(updateQuery,(edit, Id))
+        dat = request.form.get('date')
+        opts = request.form.get('opt')
+        nm = request.form.get('on')
+        nums = request.form.get('num')
+        updateData = (dat, opts, nm, nums, Id)
+        if dat=='' and nm=='' and nums =='':
+            return 'Fill all forms'
+        else:
+            updateQuery = "UPDATE info SET dated=?, Option=?, name=?, number=? where Id=?"
+            engin.execute(updateQuery,(updateData))
 
-        return redirect('/')
+            return redirect('/')
     else:
         return render_template('set_edit.html')
     
@@ -75,15 +55,6 @@ def deleteHere(Id):
     engin.execute(delQuery, Id)
 
     return redirect('/showBooking')
-
-
-
-
-
-
-
-
-
 
 @app.route('/eve', methods=["POST"])
 def eve():
