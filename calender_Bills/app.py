@@ -69,7 +69,5 @@ def eve():
         engin.execute(query)
 
         return redirect('/')
-    
-    return redirect('/event')
 
 metadata.create_all(engin)
