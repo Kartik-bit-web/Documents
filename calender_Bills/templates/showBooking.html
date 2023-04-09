@@ -6,12 +6,19 @@
 {% for book in books%}
 
     <h3>{{ book.dated }}</h3>
+    <a href="{{ url_for('deleteHere', Id = book.Id)}}">Delete</a>
+    <br>
+    <label for="name">Name: {{book.name}}</label> 
+    <a href="{{ url_for('editHere', Id = book.Id)}}">edit</a>
+    <br>
 
-    <label for="name">Name: {{book.name}}</label> <a href="{{ url_for('editBooking')}}">edit</a><br>
+    <label for="opts">options: {{book.Option}}</label> 
+    <a href="{{url_for('editHere', Id = book.Id)}}">edit</a>
+    <br>
 
-    <label for="opts">options: {{book.Option}}</label> <a href="{{url_for('editBooking')}}">edit</a><br>
+    <label for="Number">Number: {{book.number}}</label> 
+    <a href="{{url_for('editHere', Id = book.Id)}}">edit</a>
 
-    <label for="Number">Number: {{book.number}}</label> <a href="{{url_for('editBooking')}}">edit</a>
     
 {% endfor %}
 {% block edit %}

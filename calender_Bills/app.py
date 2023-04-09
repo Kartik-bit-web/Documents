@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 import sqlalchemy as db
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import update
 
 
 app = Flask(__name__)
@@ -20,10 +20,29 @@ data = db.Table('info', metadata,
 def hel():
     return render_template('myindex.html')
 
+
+
+
+@app.route('/try/<yo>')
+def tryi(yo):
+    return f'Hii {yo}'
+
+
+
+
+
+
 @app.route('/event')
 def event():
     error = 'Fill the form'
     return render_template('createEvent.html', error = error)
+
+
+
+
+
+
+
 
 @app.route('/showBooking')
 def booking():
@@ -31,18 +50,40 @@ def booking():
     show = result.fetchall()
     return render_template('showBooking.html', books=show)
 
-@app.route('/editBooking')
-def editBooking():
-    return render_template('set_edit.html')
 
-@app.route('/editBooking', methods=['POST'])
-def edited():
-    edit = request.form.get('edit')
-    updateQuery = db.update(data).values(name='Kartik')
-    queryWhere = updateQuery.where(data.columns.Id == 1)
-    engin.execute(queryWhere)
 
-    return redirect('/')
+
+
+
+
+@app.route('/editBooking/<Id>', methods=['POST', 'GET'])
+def editHere(Id):
+    print(Id)
+    if request.method=='POST':
+        edit = request.form['edit']
+        updateQuery = "UPDATE info SET name = ? where id=?"
+        engin.execute(updateQuery,(edit, Id))
+
+        return redirect('/')
+    else:
+        return render_template('set_edit.html')
+    
+@app.route('/deleteBooking/<Id>', methods=['POST', 'GET'])
+def deleteHere(Id):
+    print(Id)
+    delQuery = "delete from info where id=?"
+    engin.execute(delQuery, Id)
+
+    return redirect('/showBooking')
+
+
+
+
+
+
+
+
+
 
 @app.route('/eve', methods=["POST"])
 def eve():
@@ -56,7 +97,6 @@ def eve():
         query = db.insert(data).values( dated=dat, option= opts, name= nm, number= nums)
         engin.execute(query)
 
-        
         return redirect('/')
     
     return redirect('/event')
